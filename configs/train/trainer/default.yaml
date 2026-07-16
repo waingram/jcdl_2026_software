@@ -1,0 +1,23 @@
+max_epochs: 3
+accelerator: auto
+devices: 1
+# Optional distributed strategy (e.g., ddp). null lets Lightning auto-select.
+strategy: null
+precision: 32
+accumulate_grad_batches: 1
+# Optional gradient clipping for stability; set value to enable.
+gradient_clip_val: null
+gradient_clip_algorithm: norm
+log_every_n_steps: 50
+default_root_dir: ./outputs/train_runs
+
+# Validation/checkpoint defaults
+monitor: val_loss
+mode: min
+save_top_k: 1
+every_n_epochs: 1
+save_weights_only: false
+
+# Run behavior
+run_test_after_fit: true
+fast_dev_run: false

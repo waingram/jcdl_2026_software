@@ -1,0 +1,58 @@
+# --------------------------------------------------------
+# Manuscript-oriented Matplotlib defaults
+# --------------------------------------------------------
+
+# Typography
+font.family : DejaVu Sans
+mathtext.fontset : stix
+text.color : (0.12, 0.16, 0.20)
+
+# Axes
+axes.titlesize : 14
+axes.titleweight : semibold
+axes.titlelocation : left
+axes.labelsize : 11.5
+axes.edgecolor : (0.18, 0.23, 0.27)
+axes.labelcolor : (0.12, 0.16, 0.20)
+axes.linewidth : 0.9
+axes.spines.top : False
+axes.spines.right : False
+axes.spines.bottom : True
+axes.spines.left : True
+axes.grid : False
+
+# Grid
+grid.alpha : 0.55
+grid.linestyle : -
+grid.linewidth : 0.7
+grid.color : (0.84, 0.88, 0.91)
+
+# Lines / markers
+lines.linewidth : 1.8
+lines.markeredgewidth : 0.0
+scatter.marker : o
+
+# Ticks
+xtick.labelsize : 9.5
+xtick.color : (0.12, 0.16, 0.20)
+xtick.direction : out
+xtick.major.size : 4
+ytick.labelsize : 9.5
+ytick.color : (0.12, 0.16, 0.20)
+ytick.direction : out
+ytick.major.size : 4
+
+# Legend
+legend.frameon : False
+legend.fontsize : 9.5
+legend.title_fontsize : 9.5
+
+# Figure output
+figure.figsize : 8.6, 5.4
+figure.dpi : 200
+savefig.dpi : 300
+savefig.facecolor : white
+
+# Better font embedding for PDF/PS outputs
+pdf.fonttype : 42
+ps.fonttype : 42

@@ -1,0 +1,4 @@
+loss_mode: plain_bce  # plain_bce | masked_bce | weighted_bce
+confidence_threshold: 0.0  # Confidence in [0,1], where 0 is uncertain and 1 is highly confident.
+confidence_gamma: 1.0  # Used by weighted_bce as confidence**gamma.
+teacher_temperature: 1.0  # Applied only when target_mode=teacher_logit.

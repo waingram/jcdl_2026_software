@@ -1,0 +1,19 @@
+enabled: false
+
+# Either set via this config, or via env var WANDB_PROJECT.
+project: sdg-distillation
+entity: null
+
+# Optional metadata
+name: null
+group: null
+tags: []
+run_type: baseline  # baseline | ablation | debug | etc.
+
+# Logging behavior
+offline: false
+save_dir: ./outputs/wandb
+log_model: false  # false | all
+
+# If true, logs a small set of data-pipeline summary metrics in inspect mode.
+log_data_inspection: true

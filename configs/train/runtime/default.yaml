@@ -1,0 +1,8 @@
+print_config: true
+inspect_batch: true
+
+# Number of batches to print shape diagnostics for in inspect mode.
+inspect_batches: 1
+
+# Number of train batches to time in throughput_probe mode.
+probe_batches: 50

@@ -1,0 +1,63 @@
+[project]
+name = "sdg-distillation"
+version = "0.1.0"
+description = "Teacher labeling and student distillation pipeline for multi-label SDG relevance over research abstracts"
+authors = [{ name = "Bill Ingram", email = "waingram@vt.edu" }]
+license = { text = "BSD-3-Clause" }
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "accelerate>=1.12.0",
+    "hydra-core>=1.3.2",
+    "lightning>=2.0.0",
+    "matplotlib",
+    "numpy",
+    "omegaconf>=2.3.0",
+    "pandas",
+    "pyarrow",
+    "python-dotenv>=1.1.1",
+    "pyyaml",
+    "scikit-learn",
+    "seaborn",
+    "sentencepiece>=0.2.0",
+    "transformers>=5.0.0",
+    "tqdm",
+    "huggingface-hub",
+    "wandb>=0.22.0",
+    "jupyterlab",
+    "ipykernel",
+]
+
+[tool.uv]
+override-dependencies = [
+    "torch; sys_platform == 'never'",
+    "torchvision; sys_platform == 'never'",
+    "torchaudio; sys_platform == 'never'",
+    "triton; sys_platform == 'never'",
+    # List specific NVIDIA packages if you see them being re-downloaded
+    "nvidia-cublas-cu12; sys_platform == 'never'",
+    "nvidia-cuda-runtime-cu12; sys_platform == 'never'",
+    "nvidia-cudnn-cu12; sys_platform == 'never'",
+]
+
+[build-system]
+requires = ["hatchling>=1.26.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/sdg_relevance_labeling",
+    "src/sdg_distillation",
+    "src/sdg_shared",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[tool.pytest.ini_options]
+markers = [
+  "integration: tests that require model/tokenizer availability",
+]

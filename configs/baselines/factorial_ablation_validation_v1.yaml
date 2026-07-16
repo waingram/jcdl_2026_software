@@ -1,0 +1,59 @@
+output:
+  output_dir: ./outputs/analysis
+  report_name: factorial_ablation_validation_v1
+
+source:
+  runs_root: outputs/wandb
+  group: factorial_ablation_sbce_split_v1
+  duplicate_policy: latest
+
+latex:
+  caption: Validation results for the corrected five-condition ablation study on the materialized publication-domain validation split.
+  label: tab:ablation_validation_results
+
+conditions:
+  - key: plain_bce_t1_v1
+    label: Plain BCE (T=1.0)
+    run_name_prefix: sbce_split_plain_bce_t1_v1__s
+    seeds: [17, 23, 41]
+    expectations:
+      target_mode: teacher_logit
+      loss_mode: plain_bce
+      teacher_temperature: 1.0
+      confidence_threshold: 0.0
+      confidence_gamma: 1.0
+      train_path: data/processed/publication/student_ready_factorial_train.parquet
+      val_path: data/processed/publication/student_ready_factorial_val.parquet
+      val_fraction: 0.0
+      reference_val_path: data/processed/publication/student_ready_factorial_val.parquet
+      monitor: val_soft_bce_p1
+  - key: weighted_bce_t125_v1
+    label: Weighted BCE (T=1.25)
+    run_name_prefix: sbce_split_weighted_bce_t125_v1__s
+    seeds: [17, 23, 41]
+    expectations:
+      target_mode: teacher_logit
+      loss_mode: weighted_bce
+      teacher_temperature: 1.25
+      confidence_threshold: 0.1
+      confidence_gamma: 2.0
+      train_path: data/processed/publication/student_ready_factorial_train.parquet
+      val_path: data/processed/publication/student_ready_factorial_val.parquet
+      val_fraction: 0.0
+      reference_val_path: data/processed/publication/student_ready_factorial_val.parquet
+      monitor: val_soft_bce_p1
+  - key: hard_label_v1
+    label: Hard labels
+    run_name_prefix: sbce_split_hard_label_v1__s
+    seeds: [17, 23, 41]
+    expectations:
+      target_mode: hard_label
+      loss_mode: plain_bce
+      teacher_temperature: 1.0
+      confidence_threshold: 0.0
+      confidence_gamma: 1.0
+      train_path: data/processed/publication/student_ready_hard_factorial_train.parquet
+      val_path: data/processed/publication/student_ready_hard_factorial_val.parquet
+      val_fraction: 0.0
+      reference_val_path: data/processed/publication/student_ready_factorial_val.parquet
+      monitor: val_soft_bce_p1

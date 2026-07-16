@@ -1,0 +1,39 @@
+version: 1
+
+sdgs_path: "configs/sdgs.yaml"
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  trust_remote_code: true
+  device_map: "auto"
+  torch_dtype: "auto"
+  seed: 0
+  padding_side: "left"
+  ensure_pad_token: true
+
+input:
+  path: "data/processed/etd/vt_etds_train.csv"
+  doi_col: "uri"
+  text_col: "abstract"
+
+output:
+  dir: "outputs/teacher/etd"
+  basename: "vtechworks_qwen_binary_bit_with_probs_v1"
+  write_debug_raw: false
+
+run:
+  sdg_number: "1"
+  batch_size: 8
+  max_rows: null
+  resume: false
+
+prompt:
+  variant: "binary_bit_with_probs"
+  include_contribution_types: true
+  include_indirect_clause: true
+
+generation:
+  max_new_tokens: 1
+  return_full_text: false
+  do_sample: false
+  temperature: 0.0

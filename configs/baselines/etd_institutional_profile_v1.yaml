@@ -1,0 +1,49 @@
+output:
+  analysis_dir: outputs/analysis
+  report_name: etd_institutional_profile_v1
+
+latex:
+  caption: Department-level SDG profiling proof of concept based on the adapted ETD student. A department receives an SDG badge when at least 15\% of its ETDs are assigned to that goal at the standard 0.5 decision threshold. The top-three SDGs are ranked by mean predicted probability within department.
+  label: tab:etd_institutional_profile
+
+analysis:
+  prediction_threshold: 0.5
+  badge_threshold: 0.15
+  profile_sdg: 13
+  profile_sdg_name: Climate Action
+  ranked_top_k: 10
+  selected_departments:
+    - department: Architecture
+      short_label: Architecture
+      family: Architecture and Design
+    - department: Civil Engineering
+      short_label: Civil Engineering
+      family: Engineering
+    - department: Mechanical Engineering
+      short_label: Mechanical Engineering
+      family: Engineering
+    - department: Computer Science
+      short_label: Computer Science
+      family: Computing
+    - department: Chemistry
+      short_label: Chemistry
+      family: Natural Sciences
+    - department: Psychology
+      short_label: Psychology
+      family: Social Sciences
+    - department: Educational Leadership and Policy Studies
+      short_label: Educational Leadership
+      family: Education
+    - department: Forestry
+      short_label: Forestry
+      family: Natural Resources
+    - department: Fisheries and Wildlife Sciences
+      short_label: Fisheries and Wildlife
+      family: Natural Resources
+    - department: Animal and Poultry Sciences
+      short_label: Animal and Poultry Sciences
+      family: Life Sciences
+
+model:
+  label: ETD-adapted test
+  report_dir: outputs/inference/etd/adapted

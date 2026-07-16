@@ -1,0 +1,19 @@
+defaults:
+  - data: student_ready_default
+  - model: deberta_v3_base
+  - distillation: default
+  - optimizer: adamw_default
+  - trainer: default
+  - runtime: default
+  - initialization: default
+  - evaluation: default
+  - logging: wandb_default
+  - _self_
+
+# Distillation target source used by dataset/datamodule.
+target_mode: p1  # p1 | teacher_logit | hard_label
+
+# Entrypoint mode.
+mode: inspect_data  # inspect_data | throughput_probe | train | evaluate
+
+seed: 42

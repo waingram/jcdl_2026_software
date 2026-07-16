@@ -1,0 +1,18 @@
+output:
+  output_dir: ./outputs/analysis
+  report_name: etd_transfer_three_way_v1
+
+latex:
+  caption: Teacher-referenced ETD transfer comparison among the zero-shot source student, the ETD-adapted student initialized from the selected publication-domain checkpoint, and an ETD student trained from scratch on the same ETD train and validation split. Hard teacher reference labels are defined by $p_1 \ge 0.5$, and student hard predictions use the same 0.5 threshold.
+  label: tab:etd_transfer_three_way
+
+conditions:
+  - key: plain_bce_t1_vtechworks_test
+    label: Zero-shot ETD test
+    report_dir: outputs/inference/etd/zero_shot
+  - key: plain_bce_vtechworks_adapt_v1__vtechworks_test
+    label: ETD-adapted test
+    report_dir: outputs/inference/etd/adapted
+  - key: plain_bce_vtechworks_scratch_v1__vtechworks_test
+    label: ETD-scratch test
+    report_dir: outputs/inference/etd/scratch

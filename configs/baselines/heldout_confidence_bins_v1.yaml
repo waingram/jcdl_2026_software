@@ -1,0 +1,28 @@
+output:
+  output_dir: ./outputs/analysis
+  report_name: heldout_confidence_bins_v1
+
+analysis:
+  prediction_threshold: 0.5
+  bin_edges: [0.0, 0.25, 0.50, 0.75, 1.0]
+
+latex:
+  caption: Held-out confidence-binned comparison across teacher-confidence regions for the retained stable student conditions.
+  label: tab:heldout_confidence_bins
+
+conditions:
+  - key: plain_bce_t1_best_v1
+    label: Plain BCE (T=1.0)
+    report_dir: outputs/evaluation/heldout_plain_bce_t1_best_v1
+  - key: weighted_bce_t20_best_v1
+    label: Weighted BCE (T=2.0)
+    report_dir: outputs/evaluation/heldout_weighted_bce_t20_best_v1
+  - key: masked_bce_t1_tau50_best_v1
+    label: Masked BCE (T=1.0, tau=0.50)
+    report_dir: outputs/evaluation/heldout_masked_bce_t1_tau50_best_v1
+  - key: weighted_bce_t125_best_v1
+    label: Weighted BCE (T=1.25)
+    report_dir: outputs/evaluation/heldout_weighted_bce_t125_best_v1
+  - key: hard_label_best_v1
+    label: Hard labels
+    report_dir: outputs/evaluation/heldout_hard_label_best_v1

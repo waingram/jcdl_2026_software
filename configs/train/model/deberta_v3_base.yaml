@@ -1,0 +1,3 @@
+model_name: microsoft/deberta-v3-base
+num_labels: 17
+dropout: 0.1

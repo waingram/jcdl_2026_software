@@ -1,0 +1,13 @@
+checkpoint_path: null
+checkpoint_run_id: null
+split: test
+reference_train_path: null
+reference_val_path: null
+reference_test_path: null
+prediction_threshold: 0.5
+hard_label_threshold: 0.5
+calibration_bins: 10
+output_dir: ./outputs/evaluation
+report_name: null
+save_predictions: false
+sdgs_path: ./configs/sdgs.yaml

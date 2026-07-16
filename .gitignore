@@ -1,0 +1,14 @@
+# This is a software-only release.
+data/
+outputs/
+checkpoints/
+wandb/
+artifacts/
+
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store

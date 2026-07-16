@@ -1,0 +1,96 @@
+target_mode: teacher_logit
+mode: train
+seed: 17
+
+data:
+  train_path: data/processed/etd/student_ready_etd_adapt_train.parquet
+  test_path: data/processed/etd/student_ready_test.parquet
+  val_path: data/processed/etd/student_ready_etd_adapt_val.parquet
+  tokenizer_name: microsoft/deberta-v3-base
+  max_length: 512
+  batch_size: 8
+  num_workers: 4
+  persistent_workers: true
+  pin_memory: true
+  drop_last: false
+  val_fraction: 0.0
+
+model:
+  model_name: microsoft/deberta-v3-base
+  num_labels: 17
+  dropout: 0.2
+
+distillation:
+  loss_mode: plain_bce
+  confidence_threshold: 0.0
+  confidence_gamma: 1.0
+  teacher_temperature: 1.0
+
+optimizer:
+  learning_rate: 4.5e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.15
+
+trainer:
+  max_epochs: 3
+  accelerator: auto
+  devices: 1
+  strategy: null
+  precision: 16-mixed
+  accumulate_grad_batches: 1
+  gradient_clip_val: null
+  gradient_clip_algorithm: norm
+  log_every_n_steps: 50
+  default_root_dir: ./outputs/train_runs
+  monitor: val_soft_bce_p1
+  mode: min
+  save_top_k: 1
+  every_n_epochs: 1
+  save_weights_only: false
+  run_test_after_fit: false
+  fast_dev_run: false
+
+runtime:
+  print_config: true
+  inspect_batch: false
+  inspect_batches: 1
+  probe_batches: 50
+
+initialization:
+  checkpoint_path: null
+  checkpoint_run_id: 8i4e8y3a
+
+evaluation:
+  checkpoint_path: null
+  checkpoint_run_id: null
+  split: test
+  reference_train_path: data/processed/etd/student_ready_train.parquet
+  reference_val_path: data/processed/etd/student_ready_etd_adapt_val.parquet
+  reference_test_path: data/processed/etd/student_ready_test.parquet
+  prediction_threshold: 0.5
+  hard_label_threshold: 0.5
+  calibration_bins: 10
+  output_dir: ./outputs/evaluation
+  report_name: null
+  save_predictions: false
+  sdgs_path: ./configs/sdgs.yaml
+
+logging:
+  enabled: true
+  project: sdg-distillation
+  entity: null
+  name: etd_plain_bce_vtechworks_adapt_v1
+  group: etd_adaptation_v1
+  tags:
+    - etd
+    - domain_transfer
+    - continued_distillation
+    - plain_bce
+    - teacher_logit
+    - single_gpu
+    - 16mixed
+  run_type: etd_adaptation
+  offline: false
+  save_dir: ./outputs/wandb
+  log_model: false
+  log_data_inspection: true

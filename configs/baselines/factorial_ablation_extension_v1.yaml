@@ -1,0 +1,44 @@
+output:
+  output_dir: ./outputs/analysis
+  report_name: factorial_ablation_extension_v1
+
+source:
+  runs_root: outputs/wandb
+  group: factorial_ablation_sbce_extension_v1
+  duplicate_policy: latest
+
+latex:
+  caption: Validation results for the targeted regularization extension block on the materialized publication-domain validation split.
+  label: tab:ablation_extension_results
+
+conditions:
+  - key: masked_bce_t1_tau50_v1
+    label: Masked BCE (T=1.0, tau=0.50)
+    run_name_prefix: sbce_ext_masked_bce_t1_tau50_v1__s
+    seeds: [17, 23, 41]
+    expectations:
+      target_mode: teacher_logit
+      loss_mode: masked_bce
+      teacher_temperature: 1.0
+      confidence_threshold: 0.5
+      confidence_gamma: 1.0
+      train_path: data/processed/publication/student_ready_factorial_train.parquet
+      val_path: data/processed/publication/student_ready_factorial_val.parquet
+      val_fraction: 0.0
+      reference_val_path: data/processed/publication/student_ready_factorial_val.parquet
+      monitor: val_soft_bce_p1
+  - key: weighted_bce_t20_v1
+    label: Weighted BCE (T=2.0)
+    run_name_prefix: sbce_ext_weighted_bce_t20_v1__s
+    seeds: [17, 23, 41]
+    expectations:
+      target_mode: teacher_logit
+      loss_mode: weighted_bce
+      teacher_temperature: 2.0
+      confidence_threshold: 0.1
+      confidence_gamma: 2.0
+      train_path: data/processed/publication/student_ready_factorial_train.parquet
+      val_path: data/processed/publication/student_ready_factorial_val.parquet
+      val_fraction: 0.0
+      reference_val_path: data/processed/publication/student_ready_factorial_val.parquet
+      monitor: val_soft_bce_p1

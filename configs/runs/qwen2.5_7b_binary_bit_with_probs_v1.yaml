@@ -1,0 +1,40 @@
+# configs/runs/qwen2.5_7b_binary_v1.yaml
+version: 1
+
+sdgs_path: "configs/sdgs.yaml"
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  trust_remote_code: true
+  device_map: "auto"
+  torch_dtype: "auto"
+  seed: 0
+  padding_side: "left"
+  ensure_pad_token: true
+
+input:
+  path: "data/processed/sdg1_2023_train.csv"
+  doi_col: "DOI"
+  text_col: "Abstract"
+
+output:
+  dir: "outputs/teacher/publication"
+  basename: "scopus_sdg1_qwen_binary_bit_with_probs_v1"
+  write_debug_raw: false
+
+run:
+  sdg_number: "17"
+  batch_size: 8
+  max_rows: null         # set to an int for a quick test
+  resume: false          # keep false for now; add DOI-based resume later
+
+prompt:
+  variant: "binary_bit_with_probs"   # implemented in run_one.py
+  include_contribution_types: true
+  include_indirect_clause: true
+
+generation:
+  max_new_tokens: 1
+  return_full_text: false
+  do_sample: false
+  temperature: 0.0
